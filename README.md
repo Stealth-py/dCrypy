@@ -1,6 +1,8 @@
 <h1 align="center">dCrypy</h1>
 <p align = "center">
   A CLI based decryption/encryption tool
+</p>
+<p align = "center">
   <img src = "https://img.shields.io/badge/license-Apache%202-blue" alt = "license"/>
 </p>
 
