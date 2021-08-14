@@ -2,7 +2,7 @@
 <p align = "center">A CLI based decryption/encryption tool</p>
 
 ## Installation
-### Through `pip`
+### Through pip
 #### For Windows:
 - `pip install dCrypy`
 #### For Linux/MacOS:
