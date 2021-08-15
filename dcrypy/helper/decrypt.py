@@ -11,10 +11,11 @@ def binary_exponentiation(a, b, m):
 class Decryption:
     def __init__(self, ciphertext: str) -> None:
         self.alphabets = 'abcdefghijklmnopqrstuvwxyz'
+        self.rev_alphabets = self.alphabets[::-1]
         self.ciphertext = ''.join(ciphertext.split()).lower()
         self.plaintext = ''
         self.key = ''
-    
+
     def affine(self, a: int, b: int) -> str:
         a_c = 1
         while 1:
@@ -26,6 +27,11 @@ class Decryption:
             d[self.alphabets[i]] = i
         for i in self.ciphertext:
             self.plaintext += chr(97 + a_c*(d[i] - b)%26)
+        return self.plaintext
+
+    def atbash(self) -> str:
+        for char in self.ciphertext:
+            self.plaintext += self.rev_alphabets[self.alphabets.index(char)]
         return self.plaintext
 
     def caesar_with_shift(self, shift: int) -> str:

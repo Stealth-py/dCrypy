@@ -29,6 +29,12 @@ def affine():
     ans = dc.affine(a, b)
     click.secho(f"-> The plaintext for the given ciphertext: {ciphertext} and constants: {a} & {b} is: {ans}", fg = 'blue')
 
+@decryption.command("atbash", short_help = "You would need a ciphertext only.")
+def atbash():
+    ciphertext = click.prompt("\u001b[36m[+] Enter the ciphertext\u001b[0m", type = str)
+    dc = decrypt.Decryption(ciphertext=ciphertext)
+    ans = dc.atbash()
+    click.secho(f"-> The plaintext for the given ciphertext: {ciphertext} is: {ans}", fg = 'blue')
 
 @decryption.command("caesar", short_help = "You would need a ciphertext, and an optional shift, if shift not given, the program will output the caesar cipher for all 26 shifts.")
 def caesar():
