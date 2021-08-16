@@ -36,6 +36,14 @@ def atbash():
     ans = dc.atbash()
     click.secho(f"-> The plaintext for the given ciphertext: {ciphertext} is: {ans}", fg = 'blue')
 
+@decryption.command("beaufort", short_help = "You would need a ciphertext, and a key(STRING)")
+def beaufort():
+    ciphertext = click.prompt("\u001b[36m[+] Enter the ciphertext\u001b[0m")
+    dc = decrypt.Decryption(ciphertext=ciphertext)
+    key = click.prompt("\u001b[36m[+] Enter the key\u001b[0m", type = str)
+    ans = dc.beaufort(key=key)
+    click.secho(f"-> The plaintext for the given ciphertext: {ciphertext} and key: {key} is: {ans}", fg = 'blue')
+
 @decryption.command("caesar", short_help = "You would need a ciphertext, and an optional shift, if shift not given, the program will output the caesar cipher for all 26 shifts.")
 def caesar():
     ciphertext = click.prompt("\u001b[36m[+] Enter the ciphertext\u001b[0m")
