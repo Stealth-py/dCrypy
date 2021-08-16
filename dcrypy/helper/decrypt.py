@@ -34,6 +34,16 @@ class Decryption:
             self.plaintext += self.rev_alphabets[self.alphabets.index(char)]
         return self.plaintext
 
+    def beaufort(self, key: str) -> str:
+        self.key = ''.join(key.split()).lower()
+        n1, n2 = len(self.ciphertext), len(key)
+        temp = (n1//n2)*key + key[:n1%n2]
+        temp = temp.lower()
+        for i in range(n1):
+            t1, t2 = self.ciphertext[i], temp[i]
+            self.plaintext += self.alphabets[ord(t2) - ord(t1)]
+        return self.plaintext
+
     def caesar_with_shift(self, shift: int) -> str:
         shift%=26
         for char in self.ciphertext:
@@ -42,7 +52,7 @@ class Decryption:
             else:
                 self.plaintext += char
         return self.plaintext
-    
+
     def caesar_without_shift(self) -> str:
         answer = []
         for shift in range(1, 27):
@@ -54,7 +64,7 @@ class Decryption:
                     temp += char
             answer.append(temp)
         return answer
-    
+
     def keyword(self, key: str) -> str:
         self.key = ''.join(key.split()).lower()
         d = {}
@@ -74,7 +84,7 @@ class Decryption:
         for i in self.ciphertext:
             self.plaintext += d[i]
         return self.plaintext
-    
+
     def substitution(self, key: int) -> str:
         d = {}
         for i in range(len(self.alphabets)):
@@ -85,17 +95,20 @@ class Decryption:
             else:
                 self.plaintext+=i
         return self.plaintext
-    
+
     def vigenere(self, key: str) -> str:
         self.key = ''.join(key.split()).lower()
         n1, n2 = len(self.ciphertext), len(key)
         temp = (n1//n2)*key + key[:n1%n2]
         temp = temp.lower()
         for i in range(len(temp)):
-            self.plaintext += chr(97+(ord(self.ciphertext[i]) - ord(temp[i]) + 26)%26)
+            self.plaintext += self.alphabets[(ord(self.ciphertext[i]) - ord(temp[i]) + 26)%26]
         return self.plaintext
 
     def rsa(self, c, d, p, q) -> int:
         n = p*q
         m = binary_exponentiation(c, d, n)
         return m
+
+d = Decryption(input())
+print(d.beaufort(input()))
