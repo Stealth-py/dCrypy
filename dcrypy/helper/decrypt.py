@@ -109,6 +109,3 @@ class Decryption:
         n = p*q
         m = binary_exponentiation(c, d, n)
         return m
-
-d = Decryption(input())
-print(d.beaufort(input()))
